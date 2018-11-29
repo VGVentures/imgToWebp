@@ -1,5 +1,7 @@
 # Converts images in a folder to .webp images
 
+Converts JPEG, PNG, WebP, GIF, SVG, TIFF images to .webp format with a max height of 1080 pixels.
+
 ## Setup
 
 1.  Ensure you have node installed (recommend using [NVM](https://github.com/creationix/nvm) and Node 8.11.1)
