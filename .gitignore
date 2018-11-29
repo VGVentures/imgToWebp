@@ -4,3 +4,5 @@
 /dest
 npm-debug.log
 .DS_Store
+dest.zip
+source.zip
