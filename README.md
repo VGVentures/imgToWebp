@@ -2,7 +2,7 @@
 
 ## Setup
 
-1.  Ensure you have node installed
+1.  Ensure you have node installed (recommend using [NVM](https://github.com/creationix/nvm) and Node 8.11.1)
 2.  `npm install`
 3.  `npm run build` (only need to do this if first time install or files change)
 
