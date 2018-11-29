@@ -6,6 +6,7 @@
   "scripts": {
     "convert": "node ./lib/index.js",
     "convert:build": "npm run build && node ./lib/index.js",
+    "init": "npm run build && node ./lib/init.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/tslint -p tsconfig.json && ./node_modules/.bin/tsc"
   },

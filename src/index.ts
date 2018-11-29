@@ -1,36 +1,8 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { WebpConverter } from './converter';
-
-const sourcePath = path.join(__dirname, `../source`);
-const destPath = path.join(__dirname, `../dest`);
-
-function deleteFolderRecursive(dirPath: string) {
-  if (fs.existsSync(dirPath)) {
-    fs.readdirSync(dirPath).forEach(function(file) {
-      const curPath = path.join(dirPath, file);
-      if (fs.lstatSync(curPath).isDirectory()) {
-        // recurse
-        deleteFolderRecursive(curPath);
-      } else {
-        // delete file
-        fs.unlinkSync(curPath);
-      }
-    });
-    fs.rmdirSync(dirPath);
-  }
-}
-
-function deleteDestFiles() {
-  deleteFolderRecursive(destPath);
-  fs.mkdirSync(destPath);
-}
-
-function ensureSourceDir() {
-  if (!fs.existsSync(sourcePath)) {
-    fs.mkdirSync(sourcePath);
-  }
-}
+import { init } from './init';
+import { SOURCEPATH } from './config';
 
 function readdirAsync(dirPath: string) {
   return new Promise(function(resolve, reject) {
@@ -46,13 +18,12 @@ function readdirAsync(dirPath: string) {
 
 async function convert() {
   try {
-    deleteDestFiles();
-    ensureSourceDir();
-    const files = await readdirAsync(sourcePath);
+    init();
+    const files = await readdirAsync(SOURCEPATH);
     for (const key in files) {
       const file = files[key];
       const converter = new WebpConverter(
-        path.join(sourcePath, file).toString()
+        path.join(SOURCEPATH, file).toString()
       );
       await converter.convert();
     }
